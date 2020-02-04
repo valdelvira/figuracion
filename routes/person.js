@@ -6,7 +6,7 @@ const router = express.Router() //Importo el modulo para enrutar las paginas
 const { check, validationResult } = require('express-validator')
 
 router.post('/', [
-    check('email').isEmail()
+    check('email').normalizeEmail().isEmail()
     ],
     async(req,res) => {
         const errors = validationResult(req)

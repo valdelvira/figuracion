@@ -12,7 +12,7 @@ const personSchema = new mongosee.Schema({
     lastSurname:{
         type: String,
         required: true
-    }
+    },
     // birth: {
     //     type: Date,
     //     min: 01/01/1910,
@@ -38,15 +38,15 @@ const personSchema = new mongosee.Schema({
     // city: String,
     // country: String,
     // state: String,
-    // email: {
-    //     type: String,
-    //     validate: {
-    //         validator: function(v) {
-    //         return /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/.test(v);
-    //         },
-    //         message: props => `${props.value} is not a valid email!`
-    //     }
-    // },
+    email: {
+        type: String,
+        validate: {
+            validator: function(v) {
+            return /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/.test(v);
+            },
+            message: props => `${props.value} is not a valid email!`
+        }
+    },
     // zip: Number,
     // phone: {
     //     type: Number,
