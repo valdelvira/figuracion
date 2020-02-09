@@ -1,7 +1,7 @@
 const mongoose = require ('mongoose')
 const express = require ('express')
 const app = express()
-const port = process.env.port || 3004 
+const port = process.env.port || 3004 //Lo toma o bien por variubale de sesión o en texto
 const person = require('./routes/person')
 const user = require('./routes/user')
 const login = require('./routes/login')

@@ -59,12 +59,16 @@ router.post('/', [
             user = new User ({
                 user: req.body.user,
                 password: hashPassword,
-                email: req.body.email
+                email: req.body.email,
+                role: req.body. role
             })
 
             //Guardo el nuevo usuario
             const result = await user.save()
-            res.status(201).send({
+            //Invoco el método del esquema que genera el token
+            const jwToken = user.generateJWT()
+            //Adjunto en la cabecera el token
+            res.status(201).head('Authorization', jwTowen).send({
                 _id: user._id,
                 user: user.user,
                 email: user.email,
