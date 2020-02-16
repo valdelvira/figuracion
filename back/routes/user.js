@@ -68,12 +68,13 @@ router.post('/', [
             //Invoco el método del esquema que genera el token
             const jwToken = user.generateJWT()
             //Adjunto en la cabecera el token
-            res.status(201).head('Authorization', jwTowen).send({
-                _id: user._id,
-                user: user.user,
-                email: user.email,
-                message: 'Usuario registrado correctamente'
-            })
+            // res.status(201).head('Authorization', jwToken).send({
+            //     _id: user._id,
+            //     user: user.user,
+            //     email: user.email,
+            //     message: 'Usuario registrado correctamente'
+            // })
+            res.status(201).send({jwToken})
         }catch(e){
             res.status(404).send({message: 'Error: ' + e})
         }
