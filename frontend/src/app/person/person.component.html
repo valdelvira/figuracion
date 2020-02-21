@@ -1,0 +1,22 @@
+<div class="form">
+  <mat-card class="card">
+    <mat-card-title>Alta desempleado</mat-card-title>
+    <mat-card-content>
+      <div class="container">
+        <mat-form-field>
+          <input [(ngModel)]="altaPerson.name" matInput placeholder="Nombre">
+        </mat-form-field>
+        <mat-form-field>
+          <input [(ngModel)]="altaPerson.fisrtSurname" matInput placeholder="Primer apellido">
+        </mat-form-field>
+        <mat-form-field>
+          <input [(ngModel)]="altaPerson.lastSurname" matInput placeholder="Segundo apellido">
+        </mat-form-field>
+
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button (click) ="alta()" class="button" mat-raised-button color="primary">Nueva alta</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

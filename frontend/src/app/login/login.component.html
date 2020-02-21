@@ -1,13 +1,13 @@
 <div class="form">
     <mat-card class="card">
-        <mat-card-title>Log In</mat-card-title>
+        <mat-card-title id="logTitle">Log In</mat-card-title>
         <mat-card-content>
             <div class="container">
               <mat-form-field>
-                <input [(ngModel)]="loginUser.email" matInput placeholder="Email">
+                <input [(ngModel)]="loginUser.email" matInput placeholder="Email" required>
               </mat-form-field>
               <mat-form-field>
-                <input [(ngModel)]="loginUser.password" matInput placeholder="Password">
+                <input [(ngModel)]="loginUser.password" matInput placeholder="Password" required type="password">
               </mat-form-field>
             </div>
         </mat-card-content>

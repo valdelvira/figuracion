@@ -17,6 +17,17 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  transform: scale(1);
+  transition: transform ease-in-out 350ms;
+}
+
+.formn:focus-within,
+.form:hover{
+  transform: scale(1.1);
+}
+
+input[required](:placeholder-shown) {
+  border-color: orange;
 }
 
 mat-card-title{
@@ -34,3 +45,20 @@ input {
   color: #3f51b5;
   font-size: 1rem;
 }
+
+/* #logTitle {
+  margin: 5px;
+  padding: 20px;
+  color: #fff;
+  transform: skew(-10deg, -18deg)
+            rotate(-9deg) ;
+  background-color: green;
+  cursor: pointer;
+  transition: all .3s easy-in-out;
+}
+#logTitle:hover{
+  text-shadow: -5px -5px 1px dark;
+  transform: skew(-10deg, -18deg)
+              rotate(-9deg) ;
+  box-shadow: -5px -5px 0 0 #fff;
+} */

@@ -24,4 +24,9 @@ export class AuthService {
     return this.http.post<any>(this.loginURL, user);
   }
 
+  // Función que va a controlar que el usuario logado se pueda mover libremente
+  isLogged() {
+    return !!localStorage.getItem('token'); // Pregunto por el token almacenado
+  }
+
 }

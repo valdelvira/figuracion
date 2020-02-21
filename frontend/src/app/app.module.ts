@@ -15,7 +15,10 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatCardModule} from '@angular/material/card';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';  // fomrularios
 import { HttpClientModule } from '@angular/common/http'; // conexion con el back
-import { AuthService } from './service/auth.service'; // importo la clase relacionada con el servicio
+import { AuthService } from './service/auth.service';
+import { PersonComponent } from './person/person.component'; // importo la clase relacionada con el servicio
+import { AuthGuard } from './guard/auth.guard';
+import { CompanyComponent } from './company/company.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,9 @@ import { AuthService } from './service/auth.service'; // importo la clase relaci
     HeaderComponent,
     FooterComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    PersonComponent,
+    CompanyComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +43,7 @@ import { AuthService } from './service/auth.service'; // importo la clase relaci
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [AuthService], // Meto aqui las clases de los servicios importados
+  providers: [AuthService, AuthGuard], // Meto aqui las clases de los servicios importados
   bootstrap: [AppComponent]
 })
 export class AppModule { }
