@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
-import { PersonComponent } from './person/person.component';
-import { CompanyComponent } from './company/company.component';
+import { PersonComponent } from './person/list-person/person.component';
+import { CompanyComponent } from './company/list-company/company.component';
 import { AuthGuard } from './guard/auth.guard';
 
 const routes: Routes = [  // Defino desde aquí las rutas

@@ -7,25 +7,57 @@ const authorization = require('../middleware/role') //Para comprobar el rol del 
 const Role = require('../helpers/role')
 const router = express.Router() //Importo el modulo para enrutar las paginas
 const { check, validationResult } = require('express-validator')
+const { User } = require('../models/user')
+const upload = require('../middleware/file')
 
-router.post('/', [auth, authorization([Role.Admin, Role.User])], [
-    check('email').normalizeEmail().isEmail()
-    ],
+// POST con solo datos texto   
+router.post('/', [auth, authorization([Role.Admin, Role.User])], [check('email').normalizeEmail().isEmail()],
     async(req,res) => {
-        const errors = validationResult(req)
-        if(!errors.isEmpty()) return res.status(422).json({errors: errors.array()})
-        const person = new Person({
-            name: req.body.name,
-            fisrtSurname: req.body.fisrtSurname,
-            lastSurname: req.body.lastSurname
-        })
-        const result = await person.save()
-        res.status(201).send(result)
+        try{
+            const errors = validationResult(req)
+            if(!errors.isEmpty()) return res.status(422).json({errors: errors.array()})
+            const person = new Person({
+                userId: req.user._id,
+                name: req.body.name,
+                firstSurname: req.body.firstSurname,
+                lastSurname: req.body.lastSurname,
+                email: req.body.email,
+                status: "Desempleado"
+            })
+            const result = await person.save()
+            res.status(201).send(result)
+        } catch (e) {
+            res.status(404).send({error: 'Error al actualizar el registro: ' + e })
+        }
     }
-
 )
-//Incluyo la validación y la comprobación de permisos
-router.get('/', [auth, authorization([Role.Admin, Role.User, Role.Viewer])], async(req,res) => {
+
+// POST con fotos. Ojo en Postman hay q enviar todos los parametros por body/form-data
+router.post('/upload', upload.single('image'), [auth, authorization([Role.Admin, Role.User])], [check('email').normalizeEmail().isEmail()],
+    async(req, res) => {
+        try {
+            const url = req.protocol + '://' + req.get('host') // Construyo la url
+            let imageURL = null
+            req.file.filename ? imageURL = url + '/public/' + req.file.filename : imageURL = null
+            const person = new Person({
+                userId: req.user._id,
+                name: req.body.name,
+                firstSurname: req.body.firstSurname,
+                lastSurname: req.body.lastSurname,
+                email: req.body.email,
+                status: "Desempleado",
+                imageURL: imageURL
+            })     
+            const result = await person.save()   
+            res.status(201).send(result)
+        } catch (e) {
+            res.status(404).send({error: 'Error al actualizar el registro: ' + e })
+        }
+    }
+) 
+
+// Incluyo la validación y la comprobación de permisos
+router.get('/list', [auth, authorization([Role.Admin, Role.User, Role.Viewer])], async(req,res) => {
     
     const personAll = await  Person.find()
     res.send(personAll)
@@ -39,6 +71,7 @@ router.get('/:id', [auth, authorization([Role.Admin, Role.User, Role.Viewer])], 
         res.status(404).send({error: 'Persona no encontrada: ' + e })
     }
 })
+
 
 router.patch('/:id', [auth, authorization([Role.Admin, Role.User])], async(req, res) => {
     try {

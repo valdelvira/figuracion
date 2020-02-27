@@ -1,14 +1,14 @@
 <mat-toolbar color="primary">
   <ul>
-      <a routerLink="person">Lista</a>
+      <a *ngIf="authService.isLogged()" routerLink="person">Lista</a>
   </ul>
   <ul>
-      <a routerLink="company">Empresas</a>
+      <a *ngIf="authService.isLogged()" routerLink="company">Empresas</a>
   </ul>
   <span class="spacer"></span>
   <ul>
-      <a mat-button routerLink="signup">Sign up</a>
-      <a mat-button routerLink="login">Log in</a>
-      <a mat-button>Logout</a>
+      <a *ngIf="!authService.isLogged()" mat-button routerLink="signup">Sign up</a>
+      <a *ngIf="!authService.isLogged()" mat-button routerLink="login">Log in</a>
+      <a *ngIf="authService.isLogged()" mat-button (click)="authService.logoutUser()">Logout</a>
   </ul>
 </mat-toolbar>

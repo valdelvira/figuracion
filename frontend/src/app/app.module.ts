@@ -14,11 +14,18 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatCardModule} from '@angular/material/card';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';  // fomrularios
-import { HttpClientModule } from '@angular/common/http'; // conexion con el back
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'; // conexion con el back
 import { AuthService } from './service/auth.service';
-import { PersonComponent } from './person/person.component'; // importo la clase relacionada con el servicio
+import { PersonComponent } from './person/list-person/person.component'; // importo la clase relacionada con el servicio
 import { AuthGuard } from './guard/auth.guard';
-import { CompanyComponent } from './company/company.component';
+import { CompanyComponent } from './company/list-company/company.component';
+import { TokenInterceptorService } from './service/token-interceptor.service';
+import { PersonService } from './service/person.service';
+import { CreatePersonComponent } from './person/create-person/create-person.component';
+import { CreateCompanyComponent } from './company/create-company/create-company.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatExpansionModule} from '@angular/material/expansion';
+
 
 @NgModule({
   declarations: [
@@ -28,7 +35,9 @@ import { CompanyComponent } from './company/company.component';
     LoginComponent,
     SignupComponent,
     PersonComponent,
-    CompanyComponent
+    CompanyComponent,
+    CreatePersonComponent,
+    CreateCompanyComponent
   ],
   imports: [
     BrowserModule,
@@ -41,9 +50,17 @@ import { CompanyComponent } from './company/company.component';
     MatCardModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatSnackBarModule,
+    MatExpansionModule
   ],
-  providers: [AuthService, AuthGuard], // Meto aqui las clases de los servicios importados
+  providers: [AuthService, AuthGuard, PersonService, // Meto aqui las clases de los servicios importados
+    {
+      provide: HTTP_INTERCEPTORS, //  Envío como objeto con estos campos
+      useClass: TokenInterceptorService,  // Clase que hemos creado
+      multi: true // Si queremos meter varios interceptores
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
