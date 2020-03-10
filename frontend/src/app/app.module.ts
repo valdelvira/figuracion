@@ -25,7 +25,9 @@ import { CreatePersonComponent } from './person/create-person/create-person.comp
 import { CreateCompanyComponent } from './company/create-company/create-company.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatExpansionModule} from '@angular/material/expansion';
-
+import { MatIconModule } from '@angular/material/icon';
+import { UserComponent } from './user/list-user/user.component';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,8 @@ import { MatExpansionModule} from '@angular/material/expansion';
     PersonComponent,
     CompanyComponent,
     CreatePersonComponent,
-    CreateCompanyComponent
+    CreateCompanyComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +55,9 @@ import { MatExpansionModule} from '@angular/material/expansion';
     ReactiveFormsModule,
     HttpClientModule,
     MatSnackBarModule,
-    MatExpansionModule
+    MatIconModule,
+    MatExpansionModule,
+    MatSelectModule
   ],
   providers: [AuthService, AuthGuard, PersonService, // Meto aqui las clases de los servicios importados
     {

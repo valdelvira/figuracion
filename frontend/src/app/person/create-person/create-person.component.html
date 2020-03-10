@@ -1,1 +1,27 @@
-<p>create-person works!</p>
+<div id="alta" class="form">
+  <mat-card class="card">
+    <mat-card-title>Alta desempleado</mat-card-title>
+    <mat-card-content>
+      <div class="container">
+        <mat-form-field>
+          <input [(ngModel)]="altaPerson.name" matInput placeholder="Nombre">
+        </mat-form-field>
+        <mat-form-field>
+          <input [(ngModel)]="altaPerson.fisrtSurname" matInput placeholder="Primer apellido">
+        </mat-form-field>
+        <mat-form-field>
+          <input [(ngModel)]="altaPerson.lastSurname" matInput placeholder="Segundo apellido">
+        </mat-form-field>
+        <mat-form-field>
+          <input [(ngModel)]="altaPerson.email" matInput placeholder="Email">
+        </mat-form-field>
+        <!-- Al seleccionar fichero lanzo la función pasandole el evento que lo ha disparado -->
+        <input type="file"(change)="onFileSelected($event)">
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <!-- <button (click) ="alta()" class="button" mat-raised-button color="primary">Nueva alta</button> -->
+      <button (click) ="createUploadImage()" class="button" mat-raised-button color="primary">Nueva alta</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

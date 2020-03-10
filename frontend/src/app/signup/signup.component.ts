@@ -26,7 +26,7 @@ export class SignupComponent implements OnInit {
         localStorage.setItem('token', res.jwToken);  // Recojo el token y lo guardo como una variable en el navegador
         this.router.navigate(['/person']);  // Redirecciono si el login es correcto
       },
-      err => console.log(err)   // Recojo los posibles errores
+      err => console.error(err)   // Recojo los posibles errores
     );
   }
 

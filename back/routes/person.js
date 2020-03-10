@@ -38,7 +38,7 @@ router.post('/upload', upload.single('image'), [auth, authorization([Role.Admin,
         try {
             const url = req.protocol + '://' + req.get('host') // Construyo la url
             let imageURL = null
-            req.file.filename ? imageURL = url + '/public/' + req.file.filename : imageURL = null
+            req.file ? imageURL = url + '/public/' + req.file.filename : imageURL = null
             const person = new Person({
                 userId: req.user._id,
                 name: req.body.name,
@@ -85,7 +85,14 @@ router.patch('/:id', [auth, authorization([Role.Admin, Role.User])], async(req, 
 })
 
 router.delete ('/:id', [auth, authorization([Role.Admin, Role.User])], async(req,res) => {
-
+    try{
+            // Recibo por parámetro el id de la persona a borrar
+        const person = await Person.findByIdAndDelete(req.params.id)
+        if(!person) return res.status(404).send('La persona no existe '+ person)
+        res.status(201).send({message: 'Persona borrada de la base de datos'})
+    } catch (e) {
+        res.status(404).send({error:'Error, al intentar borrar.'})
+    }
 })
 
 module.exports = router

@@ -24,5 +24,5 @@ app.listen(port, () => console.log('Listening on port: ' + port))
 // Conexión a la base de DOMSettableTokenList, devuelve una promesa por lo que puedo usar then/catch
 mongoose
     .connect('mongodb://localhost/figuraciondb', {useNewUrlParser:true, useUnifiedTopology: true, useCreateIndex: true })
-    .then( () =>    console.log('Connected to MongoDB'))
-    .catch(error => console.log('Error conecting to MongoDB'))
+    .then( () =>    console.warn('Connected to MongoDB'))
+    .catch(error => console.error('Error conecting to MongoDB'))

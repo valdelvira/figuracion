@@ -1,0 +1,29 @@
+<div class="accordion_display">
+  <div class="accordion_size">
+     <!-- Utiliza el if para comprobar si vienen mas tareas -->
+    <mat-accordion multi="true" *ngIf="users.length">
+      <mat-expansion-panel *ngFor="let user of users" hideToggle="false">
+        <mat-expansion-panel-header>
+          <span class="text_center"> Nombre: {{user.user}} </span>
+          <span class="spacer"></span>
+            <button class="btDone" *ngIf="user.role == 'Admin'" mat-raised-button>{{user.role}}</button>
+            <button class="btInProgress" *ngIf="user.role == 'in progress'" mat-raised-button>{{user.role}}</button>
+            <button class="btToDo" *ngIf="user.role == 'to-do'" mat-raised-button>{{user.role}}</button>
+        </mat-expansion-panel-header>
+        <mat-panel-description>
+          <span class="text_center"> Email: {{user.email}} </span>
+          <span class="spacer"></span>
+          <span class="text_center"> Role: {{user.role}} </span>
+        </mat-panel-description>
+        <mat-action-row>
+          <mat-select [(ngModel)]="users" name="role">
+            <mat-option *ngFor="let user of users" [value]="user.role">
+              {{user.role}}
+            </mat-option>
+          </mat-select>
+          <mat-icon color="primary" >delete</mat-icon>
+        </mat-action-row>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+</div>

@@ -24,6 +24,20 @@ const personSchema = new mongosee.Schema({
         }    
     },
     status: String,
+    birth: {
+        type: Date,
+        min: 01/01/1910,
+        max: Date.now
+    },
+    dni:{
+        type: String,
+        validate: {
+            validator: function(v) {
+              return /^([0-9]{8}[A-Z])|[XYZ][0-9]{7}[A-Z]$/.test(v);
+            },
+            message: props => `${props.value} is not a valid ID!`
+          }
+    },
     imageURL: String,
     date: { type:Date, default: Date.now}
 })
@@ -31,20 +45,6 @@ const personSchema = new mongosee.Schema({
 const Person = mongosee.model('person', personSchema) // Creo una instancia con el modelo del esquema creado
 
 module.exports = Person //Exporto el modulo
-    // birth: {
-    //     type: Date,
-    //     min: 01/01/1910,
-    //     max: Date.now
-    // },
-    // dni:{
-    //     type: String,
-    //     validate: {
-    //         validator: function(v) {
-    //           return /^([0-9]{8}[A-Z])|[XYZ][0-9]{7}[A-Z]$/.test(v);
-    //         },
-    //         message: props => `${props.value} is not a valid ID!`
-    //       }
-    // },
     // nie: String,
     // segSocial: Number,
     // sex: {

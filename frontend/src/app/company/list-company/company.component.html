@@ -1,1 +1,26 @@
-<p>company works!</p>
+
+<span class="center" >
+  <a class="button" mat-raised-button color="primary" routerLink="/newcompany">Nueva empresa</a>
+</span>
+<div class="accordion_display">
+  <div class="accordion_size">
+     <!-- Utiliza el if para comprobar si vienen mas tareas -->
+    <mat-accordion multi="true" *ngIf="companies.length">
+      <mat-expansion-panel *ngFor="let company of companies" hideToggle="false">
+        <mat-expansion-panel-header>
+          <span class="text_center"> Nombre: {{company.name}} </span>
+          <span class="spacer"></span>
+        </mat-expansion-panel-header>
+        <mat-panel-description>
+          {{company.description}}
+        </mat-panel-description>
+        <mat-panel-description>
+          <img class="image_center" src={{company.imageURL}}>
+        </mat-panel-description>
+        <mat-action-row>
+          <mat-icon color="primary" (click)="delete(company)">delete</mat-icon>
+        </mat-action-row>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+</div>

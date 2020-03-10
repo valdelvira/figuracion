@@ -1,45 +1,25 @@
+<span class="center" >
+<a class="button" mat-raised-button color="primary" routerLink="/newperson">Alta nueva</a>
+</span>
 <div class="accordion_display">
   <div class="accordion_size">
      <!-- Utiliza el if para comprobar si vienen mas tareas -->
     <mat-accordion multi="true" *ngIf="persons.length">
       <mat-expansion-panel *ngFor="let person of persons" hideToggle="false">
         <mat-expansion-panel-header>
-          <span class="text_center">Nombre: {{person.name}} </span>
-          <span class="text_center"> Apellidos: {{person.fisrtSurname}} {{person.lastSurname}}</span>
+          <span class="text_center"> Nombre: {{person.firstSurname}} {{person.lastSurname}}, {{person.name}} </span>
           <span class="spacer"></span>
         </mat-expansion-panel-header>
         <mat-panel-description>
           {{person.fisrtSurname}}
         </mat-panel-description>
+        <mat-panel-description>
+          <img class="image_center" src={{person.imageURL}}>
+        </mat-panel-description>
+        <mat-action-row>
+          <mat-icon color="primary" (click)="delete(person)">delete</mat-icon>
+        </mat-action-row>
       </mat-expansion-panel>
     </mat-accordion>
   </div>
-</div>
-
-<div id="alta" class="form">
-  <mat-card class="card">
-    <mat-card-title>Alta desempleado</mat-card-title>
-    <mat-card-content>
-      <div class="container">
-        <mat-form-field>
-          <input [(ngModel)]="altaPerson.name" matInput placeholder="Nombre">
-        </mat-form-field>
-        <mat-form-field>
-          <input [(ngModel)]="altaPerson.fisrtSurname" matInput placeholder="Primer apellido">
-        </mat-form-field>
-        <mat-form-field>
-          <input [(ngModel)]="altaPerson.lastSurname" matInput placeholder="Segundo apellido">
-        </mat-form-field>
-        <mat-form-field>
-          <input [(ngModel)]="altaPerson.email" matInput placeholder="Email">
-        </mat-form-field>
-        <!-- Al seleccionar fichero lanzo la función pasandole el evento que lo ha disparado -->
-        <input type="file"(change)="onFileSelected($event)">
-      </div>
-    </mat-card-content>
-    <mat-card-actions>
-      <!-- <button (click) ="alta()" class="button" mat-raised-button color="primary">Nueva alta</button> -->
-      <button (click) ="createUploadImage()" class="button" mat-raised-button color="primary">Nueva alta</button>
-    </mat-card-actions>
-  </mat-card>
 </div>

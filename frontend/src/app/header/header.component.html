@@ -5,6 +5,9 @@
   <ul>
       <a *ngIf="authService.isLogged()" routerLink="company">Empresas</a>
   </ul>
+  <ul>
+    <a *ngIf="authService.isLogged()" routerLink="user">Usuarios</a>
+</ul>
   <span class="spacer"></span>
   <ul>
       <a *ngIf="!authService.isLogged()" mat-button routerLink="signup">Sign up</a>

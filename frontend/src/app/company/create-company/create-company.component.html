@@ -1,1 +1,24 @@
-<p>create-company works!</p>
+<div id="alta" class="form">
+  <mat-card class="card">
+    <mat-card-title>Nueva empresa</mat-card-title>
+    <mat-card-content>
+      <div class="container">
+        <mat-form-field>
+          <input [(ngModel)]="newCompany.name" matInput placeholder="Nombre de la empresa">
+        </mat-form-field>
+        <mat-form-field>
+          <input [(ngModel)]="newCompany.field" matInput placeholder="Ámbito">
+        </mat-form-field>
+        <mat-form-field>
+          <input [(ngModel)]="newCompany.description" matInput placeholder="Descripción">
+        </mat-form-field>
+        <!-- Al seleccionar fichero lanzo la función pasandole el evento que lo ha disparado -->
+        <input type="file"(change)="onFileSelected($event)">
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <!-- <button (click) ="alta()" class="button" mat-raised-button color="primary">Nueva alta</button> -->
+      <button (click) ="newCompanyUploadImage()" class="button" mat-raised-button color="primary">Nueva alta</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
