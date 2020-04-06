@@ -1,17 +1,27 @@
 <span class="center" >
-<a class="button" mat-raised-button color="primary" routerLink="/newperson">Alta nueva</a>
+<a class="button" mat-raised-button color="primary" routerLink="/newperson">Nuevo aspirante</a>
 </span>
 <div class="accordion_display">
   <div class="accordion_size">
      <!-- Utiliza el if para comprobar si vienen mas tareas -->
-    <mat-accordion multi="true" *ngIf="persons.length">
+    <mat-accordion multi="true" *ngIf="persons.length" class="headers-align">
       <mat-expansion-panel *ngFor="let person of persons" hideToggle="false">
         <mat-expansion-panel-header>
-          <span class="text_center"> Nombre: {{person.firstSurname}} {{person.lastSurname}}, {{person.name}} </span>
+          <mat-panel-title>
+            Datos personales de: {{person.firstSurname}} {{person.lastSurname}}, {{person.name}}
+          </mat-panel-title>
+          <mat-panel-description>
+
+            <mat-icon>account_circle</mat-icon>
+          </mat-panel-description>
+          <!-- <span class="text_center"> Nombre: {{person.firstSurname}} {{person.lastSurname}}, {{person.name}} </!-->
           <span class="spacer"></span>
         </mat-expansion-panel-header>
         <mat-panel-description>
+          <mat-label>Primer apellido: </mat-label>
           {{person.fisrtSurname}}
+          <mat-label>Segundo apellido: </mat-label>
+          {{person.lastSurname}}
         </mat-panel-description>
         <mat-panel-description>
           <img class="image_center" src={{person.imageURL}}>

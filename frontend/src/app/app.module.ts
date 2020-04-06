@@ -28,6 +28,7 @@ import { MatExpansionModule} from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { UserComponent } from './user/list-user/user.component';
 import {MatSelectModule} from '@angular/material/select';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import {MatSelectModule} from '@angular/material/select';
     MatSnackBarModule,
     MatIconModule,
     MatExpansionModule,
-    MatSelectModule
+    MatSelectModule,
+    MatGridListModule
   ],
   providers: [AuthService, AuthGuard, PersonService, // Meto aqui las clases de los servicios importados
     {
