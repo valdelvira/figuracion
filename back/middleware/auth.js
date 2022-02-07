@@ -1,4 +1,4 @@
-const jwt = require('jsonwebtoken') //$env:SECRET_KEY_JWT_PERSON_API="280342510"
+const jwt = require('jsonwebtoken') //$env:SECRET_KEY_JWT_PERSON_API="hola"
 
 //creo una función meddle q debe tener next para que siga
 function auth(req, res, next){
