@@ -60,3 +60,10 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ```bash
   npm run start
 ```
+
+
+## Environment Variables
+
+To run this project, you will need to add the following environment variables to your .env file
+
+`SECRET_KEY_JWT_PERSON_API`
